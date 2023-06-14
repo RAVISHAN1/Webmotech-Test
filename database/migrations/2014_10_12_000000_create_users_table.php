@@ -12,13 +12,26 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
+            $table->bigInteger('id', 20)->unsigned();
+            $table->integer('external_user_id');
+            $table->string('fname');
+            $table->string('lname');
+            $table->string('username');
+            $table->integer('user_group_id');
+            $table->integer('is_practitioner');
+            $table->string('email')->nullable();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
-            $table->timestamps();
+            $table->string('password')->nullable();
+            $table->string('remember_token', 100)->nullable();
+            $table->timestamp('created_at')->nullable();
+            $table->timestamp('updated_at')->nullable();
+            $table->integer('clinic_id')->nullable();
+            $table->integer('status')->default(1);
+            $table->integer('is_user')->default(0);
+            $table->integer('is_first_login')->default(1);
+            $table->string('job_title')->nullable();
+            $table->integer('job_designations_id')->nullable();
+            $table->tinyInteger('filter_col')->default(1);
         });
     }
 
