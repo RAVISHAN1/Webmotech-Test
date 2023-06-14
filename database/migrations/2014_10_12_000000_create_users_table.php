@@ -12,19 +12,18 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->bigInteger('id', 20)->unsigned();
+            $table->id();
             $table->integer('external_user_id');
             $table->string('fname');
             $table->string('lname');
-            $table->string('username');
-            $table->integer('user_group_id');
-            $table->integer('is_practitioner');
+            $table->string('username')->nullable();
+            $table->integer('user_group_id')->default(0);
+            $table->integer('is_practitioner')->default(0);
             $table->string('email')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->nullable();
-            $table->string('remember_token', 100)->nullable();
-            $table->timestamp('created_at')->nullable();
-            $table->timestamp('updated_at')->nullable();
+            $table->string('remember_token')->nullable(); 
+            $table->timestamps();
             $table->integer('clinic_id')->nullable();
             $table->integer('status')->default(1);
             $table->integer('is_user')->default(0);
